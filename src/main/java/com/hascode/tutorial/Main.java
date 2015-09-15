@@ -1,6 +1,5 @@
-package it;
+package com.hascode.tutorial;
 
-import org.junit.Test;
 import org.kie.api.KieBase;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.StatelessKieSession;
@@ -8,13 +7,11 @@ import org.kie.internal.builder.KnowledgeBuilder;
 import org.kie.internal.builder.KnowledgeBuilderFactory;
 import org.kie.internal.io.ResourceFactory;
 
-import com.hascode.tutorial.Message;
+public class Main {
 
-public class MessageRuleTest {
-	KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+	public static void main(String[] args) {
+		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
-	@Test
-	public void testName() throws Exception {
 		kbuilder.add(ResourceFactory.newClassPathResource("rules/MessageSample.drl"), ResourceType.DRL);
 		KieBase kbase = kbuilder.newKnowledgeBase();
 		StatelessKieSession ksession = kbase.newStatelessKieSession();
@@ -24,4 +21,5 @@ public class MessageRuleTest {
 		message.setStatus(Message.HELLO);
 		ksession.execute(message);
 	}
+
 }
