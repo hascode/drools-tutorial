@@ -16,3 +16,4 @@ repositories {
 
 dependencies {
     compile 'org.drools:drools-compiler:6.2.0.Final'
+}

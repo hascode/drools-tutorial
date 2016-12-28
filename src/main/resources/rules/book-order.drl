@@ -1,0 +1,17 @@
+package com.hascode.rule
+
+import com.hascode.tutorial.entity.Order;
+import com.hascode.tutorial.control.BillingService;
+
+rule "Book Order"
+    when
+        $o : Order(processed == false,  bookId: bookId, quantity : quantity )
+        $b : BillingService()
+    then
+        System.out.println("new book order - title:"+ bookId+", quantity: "+quantity);
+        $o.setProcessed(true);
+        update($o);
+        $b.addOrder($o);
+        update($b);
+end
+
