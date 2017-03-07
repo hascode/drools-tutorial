@@ -9,9 +9,9 @@ rule "Book Order"
         $b : BillingService()
     then
         System.out.println("new book order - title:"+ bookId+", quantity: "+quantity);
-        $o.setProcessed(true);
-        update($o);
         $b.addOrder($o);
         update($b);
+        $o.setProcessed(true);
+        update($o);
 end
 
